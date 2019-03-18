@@ -12,3 +12,5 @@ RUN apt update && \
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-11/bin/java" 1020 && \
     update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11/bin/javac" 1020 && \
     rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_TOOL_OPTIONS ""
