@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2019.1-linux
+FROM jetbrains/teamcity-agent:2019.1.2-linux
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/11/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN apt update && \
