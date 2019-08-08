@@ -8,9 +8,9 @@ RUN apt-get update && \
     tar -xf /tmp/openjdk.tar.gz && \
     rm /tmp/openjdk.tar.gz && \
     mkdir -p /usr/lib/jvm/jdk-12 && \
-    mv jdk-11*/* /usr/lib/jvm/jdk-12/ && \
-    update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-11/bin/java" 1020 && \
-    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11/bin/javac" 1020
+    mv jdk-12*/* /usr/lib/jvm/jdk-12/ && \
+    update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-12/bin/java" 1020 && \
+    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-12/bin/javac" 1020
 
 # install helm
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
