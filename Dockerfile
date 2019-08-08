@@ -10,11 +10,11 @@ RUN apt update && \
     mkdir -p /usr/lib/jvm/jdk-12 && \
     mv jdk-11*/* /usr/lib/jvm/jdk-12/ && \
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-11/bin/java" 1020 && \
-    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11/bin/javac" 1020 &&
+    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-11/bin/javac" 1020
 
 # install helm
-RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-RUN echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
+RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add - && \
+    echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
 
 RUN apt-get update && \
     apt-get install -y kubectl && \
@@ -22,11 +22,11 @@ RUN apt-get update && \
     chmod u+x install-helm.sh && \
     ./install-helm.sh
 
+# Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
 RUN apt-get install -y git sudo && \
     curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash - && \
-    apt-get install -y nodejs
-# Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
-RUN dotnet help
+    apt-get install -y nodejs && \
+    dotnet help
 
 
 ENV JAVA_TOOL_OPTIONS ""
