@@ -1,8 +1,7 @@
 FROM jetbrains/teamcity-agent:2019.1.2-linux
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
-RUN apt update && \
-    apt-get install -y ffmpeg gnupg2 && \
+RUN apt-get install -y ffmpeg gnupg2 && \
     curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
