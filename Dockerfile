@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2019.1.3-linux
+FROM jetbrains/teamcity-agent:2019.1.5-linux
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
@@ -15,7 +15,15 @@ RUN apt-get update && \
     mkdir -p /usr/lib/jvm/jdk-12 && \
     mv jdk-12*/* /usr/lib/jvm/jdk-12/ && \
     update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-12/bin/java" 1020 && \
-    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-12/bin/javac" 1020
+    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-12/bin/javac" 1020 && \
+    curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.1%2B9/OpenJDK13U-jdk_x64_linux_hotspot_13.0.1_9.tar.gz && \
+    cd /tmp && \
+    tar -xf /tmp/openjdk.tar.gz && \
+    rm /tmp/openjdk.tar.gz && \
+    mkdir -p /usr/lib/jvm/jdk-13 && \
+    mv jdk-13*/* /usr/lib/jvm/jdk-13/ && \
+    update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-13/bin/java" 1040 && \
+    update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-13/bin/javac" 1040
 
 # install helm
 RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > install-helm.sh
