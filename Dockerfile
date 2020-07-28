@@ -7,7 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN apt-get update && \
-    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs && \
+    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs cmake && \
     curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
