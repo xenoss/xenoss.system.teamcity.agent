@@ -7,7 +7,11 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN apt-get update && \
-    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs cmake && \
+    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget && \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+    apt update && \
+    apt install cmake build-essential && \
     curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
