@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2019.2.3-linux
+FROM jetbrains/teamcity-agent:2020.1.4-linux
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
 RUN echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list
@@ -7,7 +7,8 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN apt-get update && \
-    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget
+    apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget \
+    binfmt-support qemu-user-static
     
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
 RUN apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
