@@ -14,6 +14,7 @@ RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/nul
 RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
     sudo apt-get update && \
     sudo apt install -y cmake build-essential
+
 RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
@@ -22,6 +23,7 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk12-bina
     sudo mv jdk-12*/* /usr/lib/jvm/jdk-12/ && \
     sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-12/bin/java" 1020 && \
     sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-12/bin/javac" 1020
+
 RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.2%2B8/OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
@@ -30,6 +32,15 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk13-bina
     sudo mv jdk-13*/* /usr/lib/jvm/jdk-13/ && \
     sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-13/bin/java" 1040 && \
     sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-13/bin/javac" 1040
+
+RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
+    cd /tmp && \
+    tar -xf /tmp/openjdk.tar.gz && \
+    rm /tmp/openjdk.tar.gz && \
+    sudo mkdir -p /usr/lib/jvm/jdk-15 && \
+    sudo mv jdk-15*/* /usr/lib/jvm/jdk-15/ && \
+    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1050 && \
+    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1050
 
 # install helm
 RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > /tmp/install-helm.sh
@@ -49,6 +60,6 @@ RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-
 RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell 
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
-    echo "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main" | sudo tee /etc/apt/sources.list.d/llvm.list && \
+    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main" && \
     sudo apt-get update && \
-    sudo apt-get install -y clang-8
+    sudo apt-get install -y clang-8 lld
