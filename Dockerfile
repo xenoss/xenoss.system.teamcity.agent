@@ -60,6 +60,6 @@ RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-
 RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell 
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
-    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main" && \
+    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-11 main" && \
     sudo apt-get update && \
-    sudo apt-get install -y clang-8 lld
+    sudo apt-get install -y llvm-11 clang-10 lld ninja-build gcc-multilib
