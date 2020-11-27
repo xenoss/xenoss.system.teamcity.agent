@@ -62,4 +62,5 @@ RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
     sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-11 main" && \
     sudo apt-get update && \
-    sudo apt-get install -y llvm-11 clang-10 lld ninja-build gcc-multilib
+    sudo apt-get remove llvm-6.0 && \
+    sudo apt-get install -y llvm-11 clang-10 lld-11 ninja-build gcc-multilib
