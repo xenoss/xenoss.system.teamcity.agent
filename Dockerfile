@@ -11,7 +11,7 @@ RUN sudo apt-get update && \
     binfmt-support qemu-user-static mc
     
 RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
+RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
     sudo apt-get update && \
     sudo apt install -y cmake build-essential
 
@@ -55,12 +55,12 @@ ENV JAVA_TOOL_OPTIONS ""
 
 RUN curl -Ls https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
 	
-RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
 RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell 
 
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
-    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/bionic/ llvm-toolchain-bionic-11 main" && \
+    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/focal/ llvm-toolchain-bionic-11 main" && \
     sudo apt-get update && \
     sudo apt-get remove llvm-6.0 && \
     sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
