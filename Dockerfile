@@ -10,10 +10,10 @@ RUN sudo apt-get update && \
     sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget \
     binfmt-support qemu-user-static mc
     
-RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
-    sudo apt-get update && \
-    sudo apt install -y cmake build-essential
+#RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+#RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
+#    sudo apt-get update && \
+RUN sudo apt install -y cmake build-essential
 
 RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
     cd /tmp && \
