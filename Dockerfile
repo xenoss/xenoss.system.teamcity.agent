@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2020.2.2-linux-sudo
+FROM jetbrains/teamcity-agent:2020.2.3-linux-sudo
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list'
@@ -10,28 +10,10 @@ RUN sudo apt-get update && \
     sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget \
     binfmt-support qemu-user-static mc
     
-RUN wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
 RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
     sudo apt-get update && \
     sudo apt install -y cmake build-essential
-
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk12-binaries/releases/download/jdk-12.0.2%2B10/OpenJDK12U-jdk_x64_linux_hotspot_12.0.2_10.tar.gz && \
-    cd /tmp && \
-    tar -xf /tmp/openjdk.tar.gz && \
-    rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-12 && \
-    sudo mv jdk-12*/* /usr/lib/jvm/jdk-12/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-12/bin/java" 1020 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-12/bin/javac" 1020
-
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk13-binaries/releases/download/jdk-13.0.2%2B8/OpenJDK13U-jdk_x64_linux_hotspot_13.0.2_8.tar.gz && \
-    cd /tmp && \
-    tar -xf /tmp/openjdk.tar.gz && \
-    rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-13 && \
-    sudo mv jdk-13*/* /usr/lib/jvm/jdk-13/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-13/bin/java" 1040 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-13/bin/javac" 1040
 
 RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
     cd /tmp && \
@@ -39,8 +21,17 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-bina
     rm /tmp/openjdk.tar.gz && \
     sudo mkdir -p /usr/lib/jvm/jdk-15 && \
     sudo mv jdk-15*/* /usr/lib/jvm/jdk-15/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1050 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1050
+    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1040 && \
+    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1040
+
+RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk16-binaries/releases/download/jdk-16%2B36/OpenJDK16-jdk_x64_linux_hotspot_16_36.tar.gz && \
+    cd /tmp && \
+    tar -xf /tmp/openjdk.tar.gz && \
+    rm /tmp/openjdk.tar.gz && \
+    sudo mkdir -p /usr/lib/jvm/jdk-16 && \
+    sudo mv jdk-15*/* /usr/lib/jvm/jdk-16/ && \
+    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-16/bin/java" 1050 && \
+    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-16/bin/javac" 1050
 
 # install helm
 RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > /tmp/install-helm.sh
