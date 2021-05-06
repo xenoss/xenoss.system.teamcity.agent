@@ -34,7 +34,7 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk16-bina
     sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-16/bin/javac" 1050
 
 # install helm
-RUN curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > /tmp/install-helm.sh
+RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > /tmp/install-helm.sh
 RUN chmod u+x /tmp/install-helm.sh && \
     sudo /tmp/install-helm.sh && \
     rm -f /tmp/install-helm.sh
