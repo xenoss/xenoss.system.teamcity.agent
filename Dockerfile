@@ -29,7 +29,7 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries
     tar -xf /tmp/openjdk.tar.gz && \
     rm /tmp/openjdk.tar.gz && \
     sudo mkdir -p /usr/lib/jvm/jdk-17 && \
-    sudo mv jdk-16*/* /usr/lib/jvm/jdk-17/ && \
+    sudo mv jdk-17*/* /usr/lib/jvm/jdk-17/ && \
     sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-17/bin/java" 1050 && \
     sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-17/bin/javac" 1050
 
