@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2020.2.4-linux-sudo
+FROM jetbrains/teamcity-agent:2021.1.4-linux-sudo
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list'
@@ -24,14 +24,14 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-bina
     sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1040 && \
     sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1040
 
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk16-binaries/releases/download/jdk-16%2B36/OpenJDK16-jdk_x64_linux_hotspot_16_36.tar.gz && \
+RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17%2B35/OpenJDK17-jdk_x64_linux_hotspot_17_35.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
     rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-16 && \
-    sudo mv jdk-16*/* /usr/lib/jvm/jdk-16/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-16/bin/java" 1050 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-16/bin/javac" 1050
+    sudo mkdir -p /usr/lib/jvm/jdk-17 && \
+    sudo mv jdk-16*/* /usr/lib/jvm/jdk-17/ && \
+    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-17/bin/java" 1050 && \
+    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-17/bin/javac" 1050
 
 # install helm
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > /tmp/install-helm.sh
