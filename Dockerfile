@@ -7,7 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN sudo apt-get update && \
-    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs wget \
+    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl nodejs \
     binfmt-support qemu-user-static mc jq
     
 #RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
@@ -50,8 +50,16 @@ RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-o
 
 RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell 
 
-RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
+RUN curl -Ls https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
     sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" && \
     sudo apt-get update && \
     sudo apt-get remove llvm-6.0 && \
     sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
+
+# FPM
+RUN sudo apt-get install -y ruby-dev build-essential && sudo gem i fpm -f
+
+# Cypress
+COPY keyboard /etc/default/    
+
+RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
