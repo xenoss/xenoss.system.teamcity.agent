@@ -3,7 +3,7 @@ FROM jetbrains/teamcity-agent:2022.04.3-linux-sudo
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list'
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN sudo apt-get update && \
