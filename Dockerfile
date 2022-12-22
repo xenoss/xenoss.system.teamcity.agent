@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2022.10.1-linux-sudo
+FROM jetbrains/teamcity-agent:2022.10-linux-sudo
 
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list'
