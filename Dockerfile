@@ -15,15 +15,15 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential
 
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
-    cd /tmp && \
-    tar -xf /tmp/openjdk.tar.gz && \
-    rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-15 && \
-    sudo mv jdk-15*/* /usr/lib/jvm/jdk-15/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1040 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1040
-
+#RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
+#    cd /tmp && \
+#    tar -xf /tmp/openjdk.tar.gz && \
+#    rm /tmp/openjdk.tar.gz && \
+#    sudo mkdir -p /usr/lib/jvm/jdk-15 && \
+#    sudo mv jdk-15*/* /usr/lib/jvm/jdk-15/ && \
+#    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1040 && \
+#    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1040
+#
 RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.3%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz && \
     cd /tmp && \
     tar -xf /tmp/openjdk.tar.gz && \
@@ -40,7 +40,9 @@ RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin18-binaries
     sudo mkdir -p /usr/lib/jvm/jdk-18 && \
     sudo mv jdk-18*/* /usr/lib/jvm/jdk-18/ && \
     sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-18/bin/java" 1060 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-18/bin/javac" 1060
+    sudo update-alternatives --set java "/usr/lib/jvm/jdk-18/bin/java" && \
+    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-18/bin/javac" 1060 && \
+    sudo update-alternatives --set javac "/usr/lib/jvm/jdk-18/bin/javac"
 
 # install helm
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > /tmp/install-helm.sh
