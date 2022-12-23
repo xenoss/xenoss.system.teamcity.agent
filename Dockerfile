@@ -15,6 +15,15 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential
 
+
+RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - && \
+     sudo add-apt-repository 'deb https://apt.corretto.aws stable main' && \
+     sudo apt-get update && \
+     sudo apt-get install -y java-15-amazon-corretto-jdk && \
+     sudo apt-get install -y java-16-amazon-corretto-jdk && \
+     sudo apt-get install -y java-17-amazon-corretto-jdk && \
+     sudo apt-get install -y java-18-amazon-corretto-jdk
+
 #RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/AdoptOpenJDK/openjdk15-binaries/releases/download/jdk-15%2B36/OpenJDK15U-jdk_x64_linux_hotspot_15_36.tar.gz && \
 #    cd /tmp && \
 #    tar -xf /tmp/openjdk.tar.gz && \
@@ -24,25 +33,25 @@ RUN sudo apt install -y cmake build-essential
 #    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-15/bin/java" 1040 && \
 #    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-15/bin/javac" 1040
 #
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.3%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz && \
-    cd /tmp && \
-    tar -xf /tmp/openjdk.tar.gz && \
-    rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-17 && \
-    sudo mv jdk-17*/* /usr/lib/jvm/jdk-17/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-17/bin/java" 1050 && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-17/bin/javac" 1050
-
-RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin18-binaries/releases/download/jdk-18.0.1%2B10/OpenJDK18U-jdk_x64_linux_hotspot_18.0.1_10.tar.gz && \
-    cd /tmp && \
-    tar -xf /tmp/openjdk.tar.gz && \
-    rm /tmp/openjdk.tar.gz && \
-    sudo mkdir -p /usr/lib/jvm/jdk-18 && \
-    sudo mv jdk-18*/* /usr/lib/jvm/jdk-18/ && \
-    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-18/bin/java" 1060 && \
-    sudo update-alternatives --set java "/usr/lib/jvm/jdk-18/bin/java" && \
-    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-18/bin/javac" 1060 && \
-    sudo update-alternatives --set javac "/usr/lib/jvm/jdk-18/bin/javac"
+#RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.3%2B7/OpenJDK17U-jdk_x64_linux_hotspot_17.0.3_7.tar.gz && \
+#    cd /tmp && \
+#    tar -xf /tmp/openjdk.tar.gz && \
+#    rm /tmp/openjdk.tar.gz && \
+#    sudo mkdir -p /usr/lib/jvm/jdk-17 && \
+#    sudo mv jdk-17*/* /usr/lib/jvm/jdk-17/ && \
+#    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-17/bin/java" 1050 && \
+#    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-17/bin/javac" 1050
+#
+#RUN curl -Lso /tmp/openjdk.tar.gz https://github.com/adoptium/temurin18-binaries/releases/download/jdk-18.0.1%2B10/OpenJDK18U-jdk_x64_linux_hotspot_18.0.1_10.tar.gz && \
+#    cd /tmp && \
+#    tar -xf /tmp/openjdk.tar.gz && \
+#    rm /tmp/openjdk.tar.gz && \
+#    sudo mkdir -p /usr/lib/jvm/jdk-18 && \
+#    sudo mv jdk-18*/* /usr/lib/jvm/jdk-18/ && \
+#    sudo update-alternatives --install "/usr/bin/java" "java" "/usr/lib/jvm/jdk-18/bin/java" 1060 && \
+#    sudo update-alternatives --set java "/usr/lib/jvm/jdk-18/bin/java" && \
+#    sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/lib/jvm/jdk-18/bin/javac" 1060 && \
+#    sudo update-alternatives --set javac "/usr/lib/jvm/jdk-18/bin/javac"
 
 # install helm
 RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > /tmp/install-helm.sh
