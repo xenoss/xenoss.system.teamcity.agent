@@ -13,7 +13,7 @@ RUN sudo apt-get update && \
 #RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
 #RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
 #    sudo apt-get update && \
-RUN sudo apt install -y cmake build-essential
+RUN sudo apt install -y cmake build-essential wget
 
 
 RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - && \
