@@ -7,7 +7,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN sudo apt-get update && \
-    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl \
+    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl wget \
     binfmt-support qemu-user-static mc jq
     
 RUN wget https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
