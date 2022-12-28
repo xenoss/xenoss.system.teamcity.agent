@@ -85,8 +85,9 @@ COPY keyboard /etc/default/
 RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
 
 # Node.js 14.17.3
-RUN wget https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz \
-    tar -xvf node-v14.17.3-linux-x64.tar.gz 
+RUN wget https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
+
+RUN tar -xvf node-v14.17.3-linux-x64.tar.gz 
     
 RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
 
