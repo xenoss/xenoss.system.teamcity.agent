@@ -15,7 +15,7 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
 
-RUN curl -L https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz --output node-v14.17.3-linux-x64.tar.gz
+RUN sudo curl -L https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz --output node-v14.17.3-linux-x64.tar.gz
 
 RUN node-v14.17.3-linux-x64.tar.gz
 
