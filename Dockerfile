@@ -17,8 +17,6 @@ RUN sudo apt install -y cmake build-essential wget
 
 RUN sudo curl -L https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz --output node-v14.17.3-linux-x64.tar.gz
 
-RUN node-v14.17.3-linux-x64.tar.gz
-
 RUN sudo tar -xvf node-v14.17.3-linux-x64.tar.gz 
 
 RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
