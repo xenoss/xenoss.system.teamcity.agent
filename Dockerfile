@@ -7,23 +7,23 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
 # https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN sudo apt-get update && \
-    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl wget \
+    sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl \
     binfmt-support qemu-user-static mc jq
     
-RUN curl -sL https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
+#RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+#RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
+#    sudo apt-get update && \
+RUN sudo apt install -y cmake build-essential wget
 
-RUN ls .
+RUN curl -L https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz --output node-v14.17.3-linux-x64.tar.gz
+
+RUN node-v14.17.3-linux-x64.tar.gz
 
 RUN sudo tar -xvf node-v14.17.3-linux-x64.tar.gz 
 
 RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
 
 RUN echo "The version of Node.js is $(node -v)"
-    
-#RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-#RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
-#    sudo apt-get update && \
-RUN sudo apt install -y cmake build-essential wget
 
 
 RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - && \
