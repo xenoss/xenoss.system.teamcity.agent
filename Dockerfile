@@ -12,9 +12,9 @@ RUN sudo apt-get update && \
     
 RUN curl -sL https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
 
-RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
-
 RUN sudo tar -xvf node-v14.17.3-linux-x64.tar.gz 
+
+RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
 
 RUN echo "The version of Node.js is $(node -v)"
     
