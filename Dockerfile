@@ -10,7 +10,7 @@ RUN sudo apt-get update && \
     sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl wget \
     binfmt-support qemu-user-static mc jq
     
-RUN wget https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
+RUN curl -sL https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
 
 RUN echo 'export PATH="$HOME/node-v14.17.3-linux-x64/bin:$PATH"' >> ~/.bashrc
 
