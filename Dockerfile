@@ -1,5 +1,12 @@
 FROM jetbrains/teamcity-agent:2022.10.1-linux-sudo
 
+FROM node:14.17.3 AS node_base
+
+COPY --from=node_base . .
+
+RUN echo "NODE Version:" && node --version
+RUN echo "NPM Version:" && npm --version
+
 RUN curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /etc/apt/sources.list.d/kubernetes.list'
 
@@ -14,13 +21,6 @@ RUN sudo apt-get update && \
 #RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
-
-RUN sudo apt-get update && sudo apt-get install -y \
-    software-properties-common \
-    npm
-RUN sudo npm install npm@14.17.3 -g && \
-    sudo npm install n -g && \
-    n latest
 
 # Test the installation
 RUN node -v
