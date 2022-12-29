@@ -15,14 +15,12 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
 
-# Update the package manager and install dependencies
-RUN sudo apt-get update && sudo apt-get install -y curl tar
-
-# Download the Node.js package and extract it to the desired location
-RUN curl -sL https://nodejs.org/dist/v14.7.3/node-v14.7.3-linux-x64.tar.gz | tar -xz -C /opt/node
-
-# Add the node executable to the PATH
-RUN echo 'export PATH=$PATH:/opt/node/bin' >> ~/.bashrc
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    npm
+RUN npm install npm@14.17.3 -g && \
+    npm install n -g && \
+    n latest
 
 # Test the installation
 RUN node -v
