@@ -15,11 +15,11 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
 
-RUN apt-get update && apt-get install -y \
+RUN sudo apt-get update && sudo apt-get install -y \
     software-properties-common \
     npm
-RUN npm install npm@14.17.3 -g && \
-    npm install n -g && \
+RUN sudo npm install npm@14.17.3 -g && \
+    sudo npm install n -g && \
     n latest
 
 # Test the installation
