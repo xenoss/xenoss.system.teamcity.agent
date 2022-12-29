@@ -19,7 +19,7 @@ RUN sudo curl -L https://nodejs.org/dist/v14.17.3/node-v14.17.3-linux-x64.tar.gz
 
 RUN sudo tar -xzf node.tar.gz
 
-RUN mv node-v14.17.3-linux-x64 /opt/node
+RUN sudo mv node-v14.17.3-linux-x64 /opt/node
 
 RUN echo 'export PATH=$PATH:/opt/node/bin' >> ~/.bashrc
 
