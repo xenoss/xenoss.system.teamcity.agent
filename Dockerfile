@@ -17,7 +17,7 @@ RUN sudo apt install -y cmake build-essential wget
 
 ENV NODE_VERSION=14.17.3
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-ENV NVM_DIR=$HOME/.nvm
+ENV NVM_DIR=$HOME/root/.nvm
 RUN . "$NVM_DIR/nvm.sh" && sudo nvm install ${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && sudo nvm use v${NODE_VERSION}
 RUN . "$NVM_DIR/nvm.sh" && sudo nvm alias default v${NODE_VERSION}
