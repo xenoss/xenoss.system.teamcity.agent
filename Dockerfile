@@ -15,15 +15,15 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
 
-ENV NODE_VERSION=14.17.3
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
-ENV NVM_DIR=$HOME/root/.nvm
-RUN sudo bash "$NVM_DIR/nvm.sh" && sudo nvm install ${NODE_VERSION}
-RUN sudo bash "$NVM_DIR/nvm.sh" && sudo nvm use v${NODE_VERSION}
-RUN sudo bash "$NVM_DIR/nvm.sh" && sudo nvm alias default v${NODE_VERSION}
-ENV PATH="$HOME/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN node --version
-RUN npm --version
+RUN curl -sL https://nodejs.org/dist/v14.7.3/node-v14.7.3-linux-x64.tar.gz --output node.tar.gz
+RUN tar -xzf node.tar.gz
+
+# Move the extracted files to the desired location and add the node executable to the PATH
+RUN mv node-v14.7.3-linux-x64 /opt/node
+RUN echo 'export PATH=$PATH:/opt/node/bin' >> ~/.bashrc
+
+# Test the installation
+RUN node -v
 
 
 
