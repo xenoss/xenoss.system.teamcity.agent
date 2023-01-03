@@ -15,6 +15,7 @@ RUN sudo apt-get update && \
 #    sudo apt-get update && \
 RUN sudo apt install -y cmake build-essential wget
 
+# Install specific Node.js version
 ARG NODE_VERSION=14.17.3
 ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
 ARG NODE_HOME=/opt/$NODE_PACKAGE
@@ -23,6 +24,7 @@ ENV NODE_PATH $NODE_HOME/lib/node_modules
 ENV PATH $NODE_HOME/bin:$PATH
 
 RUN sudo curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | sudo tar -xzC /opt/
+RUN sudo chmod -R 775 /usr/local/lib/node_modules/
 
 # Test the installation
 RUN node -v
