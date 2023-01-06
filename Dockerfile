@@ -96,6 +96,6 @@ RUN sudo apt-get install -y ruby-dev build-essential && sudo gem i fpm -f
 # Cypress
 COPY keyboard /etc/default/    
 
-RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb python3-pip
 RUN pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
     
