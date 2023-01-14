@@ -28,7 +28,7 @@ RUN sudo curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | sudo
 # Test the installation
 RUN node -v
 
-
+RUN npm install -g del-cli
 
 RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - && \
      sudo add-apt-repository 'deb https://apt.corretto.aws stable main' && \
