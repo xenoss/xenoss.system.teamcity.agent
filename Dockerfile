@@ -28,8 +28,6 @@ RUN sudo curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | sudo
 # Test the installation
 RUN node -v
 
-RUN npm install -g del-cli
-
 RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - && \
      sudo add-apt-repository 'deb https://apt.corretto.aws stable main' && \
      sudo apt-get update && \
@@ -98,4 +96,7 @@ COPY keyboard /etc/default/
 
 RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb python3-pip
 RUN pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+
+# Additional plugin for nodejs
+RUN sudo npm install -g del-cli
     
