@@ -27,10 +27,11 @@ RUN  wget -O- https://apt.corretto.aws/corretto.key | sudo apt-key add - \
 
 
 # install helm
-RUN curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > /tmp/install-helm.sh
-RUN chmod u+x /tmp/install-helm.sh && \
-    sudo /tmp/install-helm.sh && \
-    rm -f /tmp/install-helm.sh
+RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null \
+    && sudo apt-get install apt-transport-https --yes \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list \
+    && sudo apt-get update \
+    && sudo apt-get install helm
 
 # Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
 RUN sudo dotnet help
