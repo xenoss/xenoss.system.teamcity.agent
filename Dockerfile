@@ -9,7 +9,7 @@ RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt-get update && \
     sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl \
     binfmt-support qemu-user-static mc jq
-    
+
 #RUN wget -O - https://apt.kitware.com/keys/kitware-archive-la3est.asc 2>/dev/null | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
 #RUN sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main' && \
 #    sudo apt-get update && \
@@ -39,16 +39,15 @@ RUN sudo dotnet help
 ENV JAVA_TOOL_OPTIONS ""
 
 RUN curl -Ls https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-	
+
 RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
 
-RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell 
+RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell
 
-RUN curl -Ls https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add - && \
-    sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main" && \
-    sudo apt-get update && \
-    sudo apt-get remove llvm-6.0 && \
-    sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
+RUN curl -Ls https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+RUN sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main"
+RUN sudo apt-get remove llvm-6.0
+RUN sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
 
 # FPM
 RUN sudo apt-get install -y ruby-dev build-essential && sudo gem i fpm -f
