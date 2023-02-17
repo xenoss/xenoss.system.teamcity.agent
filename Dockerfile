@@ -44,7 +44,7 @@ RUN echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-o
 
 RUN sudo apt-get update && sudo apt-get install -y mongodb-org-shell
 
-RUN curl -Ls https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
+RUN wget -O- https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 RUN sudo add-apt-repository "deb [trusted=yes] http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main"
 RUN sudo apt-get remove llvm-6.0
 RUN sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
