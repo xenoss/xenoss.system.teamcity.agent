@@ -5,7 +5,6 @@ RUN sudo sh -c 'echo deb https://apt.kubernetes.io/ kubernetes-xenial main > /et
 
 RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 
-# https://github.com/AdoptOpenJDK/openjdk-docker/blob/master/12/jdk/ubuntu/Dockerfile.hotspot.releases.full
 RUN sudo apt-get update && \
     sudo apt-get install -y ffmpeg gnupg2 git sudo kubectl \
     binfmt-support qemu-user-static mc jq
@@ -53,7 +52,7 @@ RUN sudo apt-get install -y llvm-11 clang-11 lld-11 ninja-build gcc-multilib
 RUN sudo apt-get install -y ruby-dev build-essential && sudo gem i fpm -f
 
 # Cypress
-COPY keyboard /etc/default/    
+COPY keyboard /etc/default/
 
 RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb python3-pip
 RUN pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
