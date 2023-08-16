@@ -35,6 +35,8 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
     && sudo apt-get update \
     && sudo apt-get install helm
 
+RUN helm plugin install https://github.com/chartmuseum/helm-push
+
 # Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
 RUN sudo dotnet help
 
