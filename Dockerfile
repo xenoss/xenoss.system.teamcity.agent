@@ -35,7 +35,7 @@ RUN curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/s
     && sudo apt-get update \
     && sudo apt-get install helm
 
-RUN helm plugin install https://github.com/chartmuseum/helm-push
+RUN sudo helm plugin install https://github.com/chartmuseum/helm-push
 
 # Trigger .NET CLI first run experience by running arbitrary cmd to populate local package cache
 RUN sudo dotnet help
@@ -60,5 +60,5 @@ RUN sudo apt-get install -y ruby-dev build-essential && sudo gem i fpm -f
 COPY keyboard /etc/default/
 
 RUN sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb python3-pip
-RUN pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+RUN sudo pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
     
